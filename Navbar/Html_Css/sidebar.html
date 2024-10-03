@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Navbar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #2c3e50;
+            padding-top: 20px;
+            transition: 0.3s ease;
+            z-index: 999;
+        }
+
+        .sidebar.closed {
+            width: 60px;
+        }
+
+        .logo {
+            color: #ecf0f1;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+            transition: 0.3s ease;
+        }
+
+        .sidebar.closed .logo {
+            font-size: 0;
+        }
+
+        .sidebar.closed .logo::first-letter {
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #34495e;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar.closed .nav-link span {
+            display: none;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: -40px;
+            width: 30px;
+            height: 30px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+
+        .content.expanded {
+            margin-left: 60px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .sidebar .logo {
+                font-size: 0;
+            }
+
+            .sidebar .logo::first-letter {
+                font-size: 1.5rem;
+            }
+
+            .sidebar .nav-link span {
+                display: none;
+            }
+
+            .content {
+                margin-left: 60px;
+            }
+
+            .toggle-btn {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="#" class="logo">SideNav</a>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Services</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+        <button class="toggle-btn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+    </nav>
+
+    <main class="content">
+        <h1>Welcome to SideNav</h1>
+        <p>This is a sidebar navigation example.</p>
+    </main>
+
+    <script>
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.content');
+        const toggleBtn = document.querySelector('.toggle-btn');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('closed');
+            content.classList.toggle('expanded');
+            toggleBtn.querySelector('i').classList.toggle('fa-chevron-right');
+            toggleBtn.querySelector('i').classList.toggle('fa-chevron-left');
+        });
+    </script>
+</body>
+</html>
